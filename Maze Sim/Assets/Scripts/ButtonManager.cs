@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -10,6 +11,11 @@ public class ButtonManager : MonoBehaviour
         MenuUI = GameObject.Find("MenuUI");
     }
 
+    public void StartPlaying()
+    {
+        SceneManager.LoadScene(LevelManager.currentMaxLevel);
+    }
+
     public void Continue()
     {
         Time.timeScale = 1.0f;
@@ -20,7 +26,7 @@ public class ButtonManager : MonoBehaviour
     {
         Time.timeScale = 1.0f;
         MenuUI.SetActive(false);
-        SceneManager.LoadScene(SceneManager.GetActiveScene().ToString());
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 
     public void Settings()

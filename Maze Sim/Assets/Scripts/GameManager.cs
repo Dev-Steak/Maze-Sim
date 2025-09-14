@@ -5,6 +5,8 @@ using TMPro;
 
 public class GameManager : MonoBehaviour
 {
+    private static int currentMaxLevel;
+
     private float seconds;
     private float minutes;
 
