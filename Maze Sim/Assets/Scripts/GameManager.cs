@@ -11,6 +11,7 @@ public class GameManager : MonoBehaviour
     private float minutes;
 
     public bool unplayableLevel;
+    public bool gamePaused;
 
     [SerializeField] private TextMeshProUGUI timerText;
 
@@ -24,23 +25,33 @@ public class GameManager : MonoBehaviour
         player = GameObject.Find("Player");
         MenuUI = GameObject.Find("MenuUI");
 
-        Time.timeScale = 1.0f;
+        Time.timeScale = 1;
+        gamePaused = false;
 
-        MenuUI.SetActive(false);
-        player.transform.position = new Vector2(entrance.transform.position.x, entrance.transform.position.y - 1);
+        if (unplayableLevel == false)
+        {
+            MenuUI.SetActive(false);
+            player.transform.position = new Vector2(entrance.transform.position.x, entrance.transform.position.y - 1);
+        }
     }
     void Update()
     {
-        if (unplayableLevel == false)
+        if (unplayableLevel == false && gamePaused == false)
         {
+            MenuUI.SetActive(false);
             Timer();
+        }
 
-            if (Input.GetKeyDown(KeyCode.Escape))
-            {
-                Time.timeScale = 0.0f;
-                MenuUI.SetActive(true);
-            }
-        }        
+        if (unplayableLevel == false && gamePaused == true)
+        {
+            MenuUI.SetActive(true);
+        }
+
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            Time.timeScale = 0;
+            gamePaused = true;
+        }     
     }
     
     public void Timer()

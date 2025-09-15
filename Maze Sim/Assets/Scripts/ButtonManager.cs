@@ -4,28 +4,37 @@ using UnityEngine.SceneManagement;
 
 public class ButtonManager : MonoBehaviour
 {
-    private GameObject MenuUI;
+    private GameObject gameM;
+    private GameManager gameManager;
 
     void Start()
     {
-        MenuUI = GameObject.Find("MenuUI");
+        gameM = GameObject.Find("GameManager");
+        gameManager = gameM.GetComponent<GameManager>();
     }
 
     public void StartPlaying()
     {
+        Time.timeScale = 1;
+        gameManager.gamePaused = false;
         SceneManager.LoadScene(LevelManager.currentMaxLevel);
+    }
+
+    public void SelectLevel()
+    {
+        SceneManager.LoadScene("Level Select");
     }
 
     public void Continue()
     {
-        Time.timeScale = 1.0f;
-        MenuUI.SetActive(false);
+        Time.timeScale = 1;
+        gameManager.gamePaused = false;
     }
 
     public void Restart()
     {
-        Time.timeScale = 1.0f;
-        MenuUI.SetActive(false);
+        Time.timeScale = 1;
+        gameManager.gamePaused = false;
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 
@@ -36,7 +45,8 @@ public class ButtonManager : MonoBehaviour
 
     public void MainMenu()
     {
-        Time.timeScale = 1.0f;
+        Time.timeScale = 1;
+        gameManager.gamePaused = false;
         SceneManager.LoadScene("Main Menu");
     }
     
