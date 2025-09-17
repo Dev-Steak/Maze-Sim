@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 3136254370155404763}
   - component: {fileID: 7429554907286909459}
   - component: {fileID: 4229279469587412493}
+  - component: {fileID: 7437908797875405759}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -47,7 +48,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GameManager
   unplayableLevel: 0
-  timerText: {fileID: 0}
+  gamePaused: 0
+  timerManager: {fileID: 0}
 --- !u!114 &7429554907286909459
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -72,3 +74,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3f769ebe048c9d449b3bb095a1fac968, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::LevelManager
+--- !u!114 &7437908797875405759
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1602672604276103368}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe7da016d41eeca49b589e640e0079d8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::TimerManager
+  timerText: {fileID: 0}
