@@ -6,6 +6,7 @@ using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
+    public bool giveMaxLevel;
     private static int currentMaxLevel;
 
     public bool unplayableLevel;
@@ -30,21 +31,28 @@ public class GameManager : MonoBehaviour
 
         if (unplayableLevel == false)
         {
+            timerManager.SetRecordText(SceneManager.GetActiveScene().buildIndex); 
             MenuUI.SetActive(false);
             player.transform.position = new Vector2(entrance.transform.position.x, entrance.transform.position.y - 1);
         }
     }
     void Update()
     {
-        if (unplayableLevel == false && gamePaused == false)
+        if (giveMaxLevel == true)
         {
-            MenuUI.SetActive(false);
-            timerManager.Timer();
+            print(TimerManager.records[SceneManager.GetActiveScene().buildIndex]);
+            print(TimerManager.firstRecord[SceneManager.GetActiveScene().buildIndex]);
         }
+
+        if (unplayableLevel == false && gamePaused == false)
+            {
+                MenuUI.SetActive(false);
+                timerManager.Timer();
+            }
 
         if (unplayableLevel == false && gamePaused == true)
         {
-            MenuUI.SetActive(true);
+            MenuUI.SetActive(true); 
         }
 
         if (Input.GetKeyDown(KeyCode.Escape))
@@ -52,7 +60,5 @@ public class GameManager : MonoBehaviour
             Time.timeScale = 0;
             gamePaused = true;
         }
-
-        timerManager.SetRecordText(SceneManager.GetActiveScene().buildIndex);  
     }
 }
