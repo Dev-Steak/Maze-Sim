@@ -13,8 +13,7 @@ public class NextLevel : MonoBehaviour
     }
     void OnCollisionEnter2D(Collision2D collision)
     {
-        timerManager.AddHighscore(SceneManager.GetActiveScene().buildIndex);
-        timerManager.SetRecordText(SceneManager.GetActiveScene().buildIndex);
+        timerManager.totalTime();
 
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
         LevelManager.currentMaxLevel++;

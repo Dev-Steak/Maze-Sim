@@ -9,17 +9,12 @@ public class TimerManager : MonoBehaviour
 {
     private float seconds;
     private float minutes;
+    public static float totalSeconds;
 
-    public static bool[] firstRecord;
-    public static float[] records;
+    //public static bool[] firstRecord;
+    //public static float[] records;
     [SerializeField] private TextMeshProUGUI timerText;
-    [SerializeField] private TextMeshProUGUI recordText;
-
-    void Awake()
-    {
-        records = new float[42];
-        firstRecord = new bool[42];
-    }
+    //[SerializeField] private TextMeshProUGUI recordText;
 
     public void Timer()
     {
@@ -40,6 +35,12 @@ public class TimerManager : MonoBehaviour
         }
     }
 
+    public void totalTime()
+    {
+        totalSeconds += seconds + minutes * 60;
+    }
+
+    /*
     public void AddHighscore(int level)
     {
         //print("Adding Highscore" + SceneManager.GetActiveScene().buildIndex);
@@ -64,10 +65,13 @@ public class TimerManager : MonoBehaviour
         }
         SetRecordText(SceneManager.GetActiveScene().buildIndex);
     }
+    */
 
+    /*
     public void SetRecordText(int level)
     {
         //print("Updating Highscore text" + SceneManager.GetActiveScene().buildIndex);
         recordText.text = Mathf.Round(records[level]) + " seconds!";
     }
+    */
 }

@@ -6,10 +6,11 @@ using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
-    public bool giveMaxLevel;
+    public bool giveTotalTime;
     private static int currentMaxLevel;
 
     public bool unplayableLevel;
+    public bool lastLevel;
     public bool gamePaused;
 
     private GameObject entrance;
@@ -17,6 +18,7 @@ public class GameManager : MonoBehaviour
     private GameObject MenuUI;
 
     private TimerManager timerManager;
+    public TextMeshProUGUI timeText;
 
     void Start()
     {
@@ -31,18 +33,28 @@ public class GameManager : MonoBehaviour
 
         if (unplayableLevel == false)
         {
-            timerManager.SetRecordText(SceneManager.GetActiveScene().buildIndex); 
+            //timerManager.SetRecordText(SceneManager.GetActiveScene().buildIndex); 
             MenuUI.SetActive(false);
             player.transform.position = new Vector2(entrance.transform.position.x, entrance.transform.position.y - 1);
+        }
+
+        if (lastLevel == true)
+        {
+            timeText.text = "It took you " + Mathf.Round(TimerManager.totalSeconds) + " seconds";
         }
     }
     void Update()
     {
-        if (giveMaxLevel == true)
+        if (giveTotalTime == true)
         {
-            print(TimerManager.records[SceneManager.GetActiveScene().buildIndex]);
-            print(TimerManager.firstRecord[SceneManager.GetActiveScene().buildIndex]);
+            print(TimerManager.totalSeconds);
         }
+
+        if (lastLevel == true)
+        {
+
+        }
+        
 
         if (unplayableLevel == false && gamePaused == false)
             {
